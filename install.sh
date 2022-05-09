@@ -9,6 +9,7 @@ sudo pip3 install opencv-contrib-python
 cd ..
 mv rpi-cv rpi
 mv rpi-bt/* rpi
+sudo rm -R rpi-bt
 
 systemctl stop serial-getty@ttyS0.service
 
