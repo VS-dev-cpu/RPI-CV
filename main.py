@@ -106,15 +106,15 @@ while True:
 	else:
 		send(1)
 	
-    key = cv2.waitKey(1)
+	key = cv2.waitKey(1)
     
-    # Exit, if needed
+	# Exit, if needed
     
-    if key == 27:
-        break
+	if key == 27:
+		break
     
-    if (acorn and acornSize > minacornSize):
-        break
+	if (acorn and acornSize > minacornSize):
+		break
     
 send(0)
 send(-2)
