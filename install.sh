@@ -1,10 +1,10 @@
 echo "Installing OpenCV Python Libraries"
 
-sudo apt install git
 sudo apt install pip
 
+sudo apt install libglew-dev
+
 sudo pip3 install opencv-contrib-python
-sudo pip3 install pyserial
 
 cd ..
 mv rpi-cv rpi
