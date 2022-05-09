@@ -103,8 +103,8 @@ while True:
 			send(1)
 		else:
 			send(3)
-		else:
-			send(1)
+	else:
+		send(1)
 	
     key = cv2.waitKey(1)
     
