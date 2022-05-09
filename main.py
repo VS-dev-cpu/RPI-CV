@@ -46,9 +46,9 @@ minacornSize = 150
 
 debugging = False
 
-bt = bt.BT("basic")
+bt = bt.BT()
 
-#bt.sync()
+bt.sync()
 
 send(-1)
 time.sleep(3)
