@@ -3,7 +3,7 @@ import time
 import bt
 
 def send(data):
-    os.system("echo '" + data + "\\n' >> /dev/ttyS0")
+    os.system("echo '" + str(data) + "\\n' >> /dev/ttyS0")
 
 import cv2
 import numpy as np
