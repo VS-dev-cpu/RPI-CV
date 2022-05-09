@@ -57,54 +57,54 @@ time.sleep(3)
 
 while True:
 	# Read image from the camera
-    ret, frame = cap.read()
+	ret, frame = cap.read()
     
-    if not ret:
-    	print("ERROR: CAN NOT READ IMAGE FROM THE CAMERA")
-    	exit()
-    
-    # Flip the image
-    if (IMAGE_FLIP_VERTICALLY):
-    	frame = cv2.flip(frame, 0)
-    if (IMAGE_FLIP_HORIZONTALLY):
-        frame = cv2.flip(frame, 1)
+	if not ret:
+		print("ERROR: CAN NOT READ IMAGE FROM THE CAMERA")
+		exit()
+		
+	# Flip the image
+	if (IMAGE_FLIP_VERTICALLY):
+		frame = cv2.flip(frame, 0)
+	if (IMAGE_FLIP_HORIZONTALLY):
+		frame = cv2.flip(frame, 1)
         
-    #Create masks and find the objects
+	#Create masks and find the objects
         
-    hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+	hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    acorn_mask = cv2.inRange(hsv_frame, low_acorn, high_acorn)
-    acorn_contours, _ = cv2.findContours(acorn_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-    acorn_contours = sorted(acorn_contours, key=lambda x:cv2.contourArea(x), reverse=True)
+	acorn_mask = cv2.inRange(hsv_frame, low_acorn, high_acorn)
+	acorn_contours, _ = cv2.findContours(acorn_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+	acorn_contours = sorted(acorn_contours, key=lambda x:cv2.contourArea(x), reverse=True)
    
-    acornX = W / 2
-    acornY = H / 2
-    acornSize = 0
-    acornDist = 0
-    acorn = False
+	acornX = W / 2
+	acornY = H / 2
+	acornSize = 0
+	acornDist = 0
+	acorn = False
     
-    for cnt in acorn_contours:
-        (x, y, w, h) = cv2.boundingRect(cnt)
+	for cnt in acorn_contours:
+		(x, y, w, h) = cv2.boundingRect(cnt)
         
-        acornX = int((x + x + w) / 2)
-        acornY = int((y + y + h) / 2)
-        acornSize = int((w + h) / 2)
-        acornDist = int(-acornSize + w)
-        acorn = True
-        break
+		acornX = int((x + x + w) / 2)
+		acornY = int((y + y + h) / 2)
+		acornSize = int((w + h) / 2)
+		acornDist = int(-acornSize + w)
+		acorn = True
+		break
     
-    # Move the robot
+	# Move the robot
     
-    if (acorn):
-      wall = False
-      if (acornX < (W/2 - W/gap)):
-        send(2)
-      elif (acornX > (W/2 + W/gap)):
-          send(1)
-      else:
-          send(3)
-    else:
-	send(1)
+	if (acorn):
+		wall = False
+		if (acornX < (W/2 - W/gap)):
+			send(2)
+		elif (acornX > (W/2 + W/gap)):
+			send(1)
+		else:
+			send(3)
+		else:
+			send(1)
 	
     key = cv2.waitKey(1)
     
