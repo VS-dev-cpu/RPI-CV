@@ -1,18 +1,9 @@
-import serial
+import os
 import time
 import bt
 
-init = False
-port = '/dev/ttyACM0'
-
-try:
-  ser = serial.Serial(port, 9600)
-  init = True
-except:
-  pass
-
-if (init == False):
-  print("WARNING: No Arduino Detected At " + port)
+def send(data):
+    os.system("echo '" + data + "\\n' >> /dev/ttyS0")
 
 import cv2
 import numpy as np
@@ -59,7 +50,7 @@ bt = bt.BT("basic")
 
 #bt.sync()
 
-ser.write(b'-1\n')
+send(-1)
 time.sleep(3)
 
 #bt.sync()
@@ -107,16 +98,14 @@ while True:
     if (acorn):
       wall = False
       if (acornX < (W/2 - W/gap)):
-        ser.write(b'2')
+        send(2)
       elif (acornX > (W/2 + W/gap)):
-          ser.write(b'1')
+          send(1)
       else:
-          ser.write(b'3')
+          send(3)
     else:
-	ser.write(b'1')
-
-    ser.write(b'\n')
-
+	send(1)
+	
     key = cv2.waitKey(1)
     
     # Exit, if needed
@@ -127,11 +116,8 @@ while True:
     if (acorn and acornSize > minacornSize):
         break
     
-ser.write(b'0\n')
-bt.sync()
-    
-ser.write(b'-2\n')
-time.sleep(5)
-    
+send(0)
+send(-2)
+
 cap.release()
 cv2.destroyAllWindows()
