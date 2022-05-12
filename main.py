@@ -4,6 +4,8 @@ import bt
 from datetime import datetime
 import calendar
 
+import RPi.GPIO as gpio
+
 def unix():
 	d = datetime.utcnow()
 	return calendar.timegm(d.utctimetuple())
@@ -56,11 +58,11 @@ bt = bt.BT()
 
 bt.sync()
 
-send(-1)
+send(10)
 time.sleep(3)
 
 start = unix()
-duration = 120
+duration = 60
 
 while True:
 	# Read image from the camera
@@ -127,7 +129,7 @@ while True:
 		break
     
 send(0)
-send(-2)
+send(20)
 
 cap.release()
 cv2.destroyAllWindows()
