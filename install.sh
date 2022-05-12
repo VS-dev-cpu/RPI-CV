@@ -6,8 +6,6 @@ sudo apt install libglew-dev
 
 sudo pip3 install opencv-contrib-python
 
-sudo apt install arduino
-
 cd ..
 mv rpi-cv rpi
 mv rpi-bt/* rpi
