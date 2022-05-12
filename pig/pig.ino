@@ -80,13 +80,13 @@ void loop() {
      case 4:
       backward(0);
 
-     case 10:
+     case 10: // Get Out Of The House
       forward(1000);
       right(700);
       forward(1000);
       break;
 
-    case 20:
+    case 20:  // Final Dance
       delay(500);
       mleft->run(FORWARD);   //FORWARD
       mright->run(FORWARD);
@@ -119,12 +119,20 @@ void loop() {
 
       delay(2000);
 
-    case 30:
+    case 30:  // Obstacle Avoiding
       left(700);
 
       forward(1000);
 
       right(700);
+      
+      forward(2000);
+      
+      right(700);
+      
+      forward(1000);
+      
+      left(700);
 
       brake();
       break;
