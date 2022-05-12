@@ -59,7 +59,8 @@ bt.sync()
 send(-1)
 time.sleep(3)
 
-#bt.sync()
+start = unix()
+duration = 120
 
 while True:
 	# Read image from the camera
@@ -68,6 +69,9 @@ while True:
 	if not ret:
 		print("ERROR: CAN NOT READ IMAGE FROM THE CAMERA")
 		exit()
+		
+	if (unix() - start > duration):
+		break;
 		
 	# Flip the image
 	if (IMAGE_FLIP_VERTICALLY):
