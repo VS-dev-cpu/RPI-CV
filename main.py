@@ -1,6 +1,12 @@
 import os
 import time
 import bt
+from datetime import datetime
+import calendar
+
+def unix():
+	d = datetime.utcnow()
+	return calendar.timegm(d.utctimetuple())
 
 def send(data):
     os.system("echo '" + str(data) + "\\n' >> /dev/ttyS0")
