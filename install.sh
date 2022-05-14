@@ -11,6 +11,8 @@ mv rpi-cv rpi
 mv rpi-bt/* rpi
 sudo rm -R rpi-bt
 
+echo "python3 ~/pystart.py &" >> ~/.bashrc
+
 systemctl stop serial-getty@ttyS0.service
 
 echo "Remove the first two chunks from '/boot/cmdline.txt' to make communication work!"
